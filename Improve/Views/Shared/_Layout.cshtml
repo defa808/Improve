@@ -1,43 +1,79 @@
 ﻿<!DOCTYPE html>
 <html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>@ViewBag.Title – приложение ASP.NET</title>
-    @Styles.Render("~/Content/css")
     @Scripts.Render("~/bundles/modernizr")
+    @Styles.Render("~/Content/bootstrap.min.css")
+    <script src="~/Scripts/slideout.min.js"></script>
+    <link href="~/Content/TouchMenu.css" rel="stylesheet" />
+    <link href="@Url.Content("~/Content/main.css")" rel="stylesheet" />
+    @Scripts.Render("~/Scripts/jquery-3.2.1.js")
+    @Scripts.Render("~/Scripts/jquery.unobtrusive-ajax.min.js")
+
 </head>
 <body>
-    <div class="navbar navbar-inverse navbar-fixed-top">
+
+    <header>
         <div class="container">
-            <div class="navbar-header">
-                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                </button>
-                @Html.ActionLink("Имя приложения", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
-            </div>
-            <div class="navbar-collapse collapse">
-                <ul class="nav navbar-nav">
-                    <li>@Html.ActionLink("Домашняя страница", "Index", "Home")</li>
-                    <li>@Html.ActionLink("О программе", "About", "Home")</li>
-                    <li>@Html.ActionLink("Контакт", "Contact", "Home")</li>
-                </ul>
-            </div>
+            <a href="index.html"><img class="logo-head" src="../images/improve.svg"></a>
+            <nav>
+                <a href="#info" class="text-head">Інформація</a>
+                <a href="#form" class="text-head">Анкета</a>
+                <a href="#courses" class="text-head">Курси</a>
+                <a href="#vacancies" class="text-head">Вакансії</a>
+            </nav>
+            <div class="btn-menu"><input type="submit" class="menusub js-slideout-toggle" name="" value="" /></div>
+        </div>
+    </header>
+
+    <div id="menu" class="menu">
+        <div class="container">
+            <nav>
+                <a href="#info" class="text-menu">Інформація</a>
+                <hr class="line-header" />
+                <a href="#form" class="text-menu">Анкета</a>
+                <hr class="line-header" />
+                <a href="#courses" class="text-menu">Курси</a>
+                <hr class="line-header" />
+                <a href="#vacancies" class="text-menu">Вакансії</a>
+            </nav>
         </div>
     </div>
-    <div class="container body-content">
-        @RenderBody()
-        <hr />
-        <footer>
-            <p>&copy; @DateTime.Now.Year – приложение ASP.NET</p>
-        </footer>
-    </div>
+    <main id="main">
 
-    @Scripts.Render("~/bundles/jquery")
-    @Scripts.Render("~/bundles/bootstrap")
-    @RenderSection("scripts", required: false)
+        <script>
+            window.onload = function () {
+                var slideout = new Slideout({
+                    'panel': document.getElementById('main'),
+                    'menu': document.getElementById('menu'),
+                    'side': 'right'
+                });
+
+                document.querySelector('.js-slideout-toggle').addEventListener('click', function () {
+                    slideout.toggle();
+                });
+
+            };
+        </script>
+
+        @RenderBody()
+
+        <footer>
+            <div class="container">
+                <h2>Kyiv 2017</h2>
+                <hr class="line-footer" />
+                <h2>Developed by the A team</h2>
+                <hr class="line-footer" />
+                <h2>© Improve</h2>
+            </div>
+        </footer>
+        @Scripts.Render("~/bundles/jquery")
+        @Scripts.Render("~/bundles/bootstrap")
+        @RenderSection("scripts", required: false)
+    </main>
+
 </body>
 </html>

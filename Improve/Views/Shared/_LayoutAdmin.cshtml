@@ -1,0 +1,54 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    @Styles.Render("~/Content/css")
+    <link rel="icon" type="image/png" href="@Url.Content("~/images/logo.png")" />
+    @*@Scripts.Render("~/bundles/modernizr")*@
+    <link href="@Url.Content("~/Content/main.css")" rel="stylesheet" />
+    @Scripts.Render("~/bundles/modernizr")
+    @Scripts.Render("~/Scripts/jquery-3.2.1.js")
+    @Scripts.Render("~/Scripts/jquery.unobtrusive-ajax.min.js")
+</head>
+<body>
+    <header>
+        <div class="container">
+            <a href="Index.cshtml"><img class="logo-head" src="@Url.Content("~/images/improve.png")"></a>
+            <nav>
+                <a href="@Url.Content("~/Courses")" class="text-head">Course</a>
+                <a href="@Url.Content("~/Vacancies")" class="text-head">Vacancies</a>
+                <a href="@Url.Content("~/Questions")" class="text-head">Questions</a>
+                <a href="@Url.Content("~/Options")" class="text-head">Options</a>
+            </nav>
+        </div>
+        @Html.ActionLink("Вийти", "../Home/Logoff", null, new { @style = "position:absolute; top: 10px; right: 100px;", @class = "btn btn-default" })
+
+    </header>
+
+    @RenderBody()
+
+    <footer>
+        <div class="container">
+            <h2>Kyiv 2017</h2>
+            <h2>Developed by the A team</h2>
+            <h2>© Improve</h2>
+        </div>
+    </footer>
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
+    @RenderSection("scripts", required: false)
+
+    <script type="text/javascript">
+        function Logoff() {
+
+            $.ajax({
+                type: 'GET',
+                url: '/Home/Logoff',
+            });
+        }
+    </script>
+</body>
+</html>

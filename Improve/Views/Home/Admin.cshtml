@@ -1,0 +1,40 @@
+﻿@model Improve.Models.LoginViewModel
+@{
+    ViewBag.Title = "Авторизация на сайте";
+}
+<style>
+    .row{
+        margin:auto;
+        padding:0px;
+    }
+</style>
+<br />
+<br />
+<h2>Вхід до Адмінки</h2>
+
+
+@using (Html.BeginForm())
+{
+    @Html.ValidationMessage("AdminModel", new { @style = "color: red; font-size: 17px" })
+
+    @Html.AntiForgeryToken();
+    <input type="hidden" name="returnUrl" value="@ViewBag.returnUrl" />
+    <div class="row">
+        <div class="form-group">
+            <div class="col-xs-12 col-sm-6 col-md-3 col-lg-3">
+                @Html.LabelFor(x => x.Name)
+                @Html.TextBoxFor(x => x.Name, new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.Name, "", new { @class = "text-danger" })
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="col-xs-12 col-sm-6 col-md-3 col-lg-3">
+                @Html.LabelFor(x => x.Password)
+                @Html.PasswordFor(x => x.Password, new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.Password, "", new { @class = "text-danger" })
+            </div>
+        </div>
+        <button class="btn btn-primary" type="submit">Войти</button>
+    </div>
+
+}

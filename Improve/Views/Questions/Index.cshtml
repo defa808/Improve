@@ -1,0 +1,73 @@
+﻿@model IEnumerable<Improve.Models.Question>
+@using Improve.Models
+@{
+    ViewBag.Title = "Index Questions";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Text)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Options)
+        </th>
+        <th>
+            Next Question
+        </th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Text)
+            </td>
+
+            <td>
+                @foreach (Option op in item.Options)
+                {
+                    @Html.DisplayFor(modelItem => op.Value)
+                    @Html.Raw(" (");
+                    @Html.ActionLink("Edit", @Url.Content("../Options/Edit"), new { id = op.Id })
+                    @Html.Raw(" | ");
+                    @Html.ActionLink("Details", @Url.Content("../Options/Details"), new { id = op.Id })
+                    @Html.Raw(" | ");
+                    @Html.ActionLink("Delete", @Url.Content("../Options/Delete"), new { id = op.Id })
+                    @Html.Raw(") ");
+
+                    <br />
+                }
+                @Html.ActionLink("Create New", @Url.Content("../Options/Create"), new { id = item.Id })
+            </td>
+
+            <td>
+                @foreach (Option op in item.Options)
+                {
+                    if (Model.ToList().Find(x => x.Id.Equals(op.IdNextQuestion)) != null)
+                    {
+                        @Html.Raw(Model.ToList().Find(x => x.Id.Equals(op.IdNextQuestion)).Text)
+                        <br />
+                    }
+                    else
+                    {
+                        @Html.Raw("Null");
+                        <br/>
+                    }
+                }
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { id = item.Id }) |
+                @Html.ActionLink("Details", "Details", new { id = item.Id }) |
+                @Html.ActionLink("Delete", "Delete", new { id = item.Id })
+            </td>
+        </tr>
+    }
+
+</table>

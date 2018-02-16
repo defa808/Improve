@@ -1,0 +1,34 @@
+﻿[
+  {
+    "outputFile": "Content/main.css",
+    "inputFile": "Content/main.less"
+  },
+  {
+    "outputFile": "Content/clearfix.css",
+    "inputFile": "Content/clearfix.less"
+  },
+  {
+    "outputFile": "Content/adaptive-main/laptop.css",
+    "inputFile": "Content/adaptive-main/laptop.less"
+  },
+  {
+    "outputFile": "Content/adaptive-main/mobile.css",
+    "inputFile": "Content/adaptive-main/mobile.less"
+  },
+  {
+    "outputFile": "Content/adaptive-main/tablet.css",
+    "inputFile": "Content/adaptive-main/tablet.less"
+  },
+  {
+    "outputFile": "Content/adaptive/laptop.css",
+    "inputFile": "Content/adaptive/laptop.less"
+  },
+  {
+    "outputFile": "Content/adaptive/mobile.css",
+    "inputFile": "Content/adaptive/mobile.less"
+  },
+  {
+    "outputFile": "Content/adaptive/tablet.css",
+    "inputFile": "Content/adaptive/tablet.less"
+  }
+]

@@ -1,0 +1,24 @@
+﻿@model IEnumerable<Improve.Models.Course>
+
+<div class="row">
+    @foreach (var item in Model)
+    {
+        <div class="wrap-container col-xs-12 col-sm-6 col-md-4 col-lg-3 ">
+            <div class="container_item ">
+                <div class="hdr">
+                    <h2>@item.Header</h2>
+                </div>
+                <div class="txt">
+                    <dl>
+                        <dt>Компания:</dt>
+                        <dd class="company_container">@item.Company</dd>
+                    </dl>
+                    <dl>
+                        <dd class="text_container">@item.Text</dd>
+                    </dl>
+                    <button class="btn btn-large btn-block btn-info" type="button">Подробней</button>
+                </div>
+            </div>
+        </div>
+    }
+</div>

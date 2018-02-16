@@ -1,0 +1,85 @@
+﻿@model List<Improve.Models.Question>
+@using Improve.Models
+<div class="container">
+    @{
+        List<Option> answers = (List<Option>)Session["Answers"];
+        var length = Model.Count();
+        if (length > 1)
+        {
+            <div class="prev">
+                <a onclick="document.getElementById('kek').click();">
+                    <button id="kek" name="optionId" value="@answers.Last().Id" style="display:none;"></button>
+                    <h2>@Html.DisplayFor(m => m[length - 2].Text)</h2>
+                    @foreach (var item in Model[length - 2].Options)
+                    {
+                        <div class="check-ans"></div>
+                        <button class="ans" type="button"> @item.Value</button>
+                    }
+                </a>
+            </div>
+        }
+    }
+    <button id="resetbtn" name="id" value="@Model[0].Id" class="btn btn-sm  defaulBtn" onclick="resetAnswers()" style="position: absolute; top:200px; right:100px; width: 100px">Зкинути</button>
+    <div class="current">
+        <h2>@Html.DisplayFor(m => m.Last().Text)</h2>
+
+        @foreach (var item in Model.Last().Options)
+        {
+            <div class="check-ans"></div>
+            <button name="optionId" class="ans" value="@item.Id">@item.Value</button>
+
+        }
+    </div>
+
+    <script type="text/javascript">
+        function loadCourses() {
+
+            $.ajax({
+                type: 'GET',
+                url: '/Home/LoadCourse',
+                success: function (data, textstatus) {
+                    if (data != '') {
+                        $("#courses").html("");
+                        $("#courses").append(data);
+                    }
+
+                }
+            });
+        }
+        function loadVacancies() {
+
+            $.ajax({
+                type: 'GET',
+                url: '/Home/LoadVacancies',
+                success: function (data, textstatus) {
+                    if (data != '') {
+                        $("#vacancies").html("");
+                        $("#vacancies").append(data);
+                    }
+
+                }
+            });
+        }
+
+        function cancelAnswer() {
+
+            $.ajax({
+                type: 'POST',
+                url: '/Home/CancelAnswer'
+            });
+        }
+
+        function resetAnswers() {
+
+            $.ajax({
+                type: 'POST',
+                url: '/Home/ResetAnswers'
+            });
+        }
+
+        // обработка события скроллинга
+        loadCourses();
+        loadVacancies();
+    </script>
+</div>
+

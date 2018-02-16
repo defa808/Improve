@@ -1,31 +1,157 @@
-﻿@{
-    ViewBag.Title = "Home Page";
+﻿@model IEnumerable<Improve.Models.Course>
+
+@{
+    ViewBag.Title = "Improve - знайди себе";
+    Layout = "~/Views/Shared/_Layout.cshtml";
 }
+@using Improve.Models;
 
-<div class="jumbotron">
-    <h1>ASP.NET</h1>
-    <p class="lead">ASP.NET is a free web framework for building great Web sites and Web applications using HTML, CSS and JavaScript.</p>
-    <p><a href="https://asp.net" class="btn btn-primary btn-lg">Learn more &raquo;</a></p>
-</div>
+<article class="section-two">
+    <div class="hello-img">
+        <img class="hello" src="@Url.Content("~/images/hello.svg")" align="left" />
+    </div>
+    <div class="container">
+        <div class="txttt">
+            <h1>Improve</h1>
+            <h3>Знайди своє місце на шляху до успіху</h3>
+        </div>
+    </div>
+</article>
 
-<div class="row">
-    <div class="col-md-4">
-        <h2>Getting started</h2>
-        <p>
-            ASP.NET MVC gives you a powerful, patterns-based way to build dynamic websites that
-            enables a clean separation of concerns and gives you full control over markup
-            for enjoyable, agile development.
-        </p>
-        <p><a class="btn btn-default" href="https://go.microsoft.com/fwlink/?LinkId=301865">Learn more &raquo;</a></p>
+<a name="info"></a>
+<article class="section-three">
+    <div class="work-img">
+        <img src="images/work.svg" />
     </div>
-    <div class="col-md-4">
-        <h2>Get more libraries</h2>
-        <p>NuGet is a free Visual Studio extension that makes it easy to add, remove, and update libraries and tools in Visual Studio projects.</p>
-        <p><a class="btn btn-default" href="https://go.microsoft.com/fwlink/?LinkId=301866">Learn more &raquo;</a></p>
+    <div class="container">
+        <div class="txtt">
+            <h1>Обери напрям</h1>
+            <h3>Обери напрямок в ІТ, яким ти захоплюєшся. Важливо вчити те, що тобі дійсно подобається. Твоя завзятість є ключем до успіху.</h3>
+        </div>
+        <div class="txtt">
+            <h1>Знайди курси для розвитку</h1>
+            <h3>Інвестуй у своє майбутнє та проходь запропоновані нами курси. Практичні заняття, кваліфіковані викладачі та актуальні знання, без яких стати успішним сьогодні - неможливо.</h3>
+        </div>
+        <div class="txtt">
+            <h1>Пошук роботи</h1>
+            <h3>Якщо ти вже готовий шукати роботу, ми допоможемо тобі знайти її. Обирай що тобі до вподоби серед запропонованих нами рекомендованих роботодавців.</h3>
+        </div>
     </div>
-    <div class="col-md-4">
-        <h2>Web Hosting</h2>
-        <p>You can easily find a web hosting company that offers the right mix of features and price for your applications.</p>
-        <p><a class="btn btn-default" href="https://go.microsoft.com/fwlink/?LinkId=301867">Learn more &raquo;</a></p>
+</article>
+
+
+<article class="section-five">
+    <div class="container" style="background-color:white">
     </div>
-</div>
+</article>
+
+<article class="section-seven">
+    <img class="vacancies" src="@Url.Content("~/images/vac.svg")" align="left" />
+    <div class="container">
+        <h1 class="c-h">Шукаєш роботу?</h1>
+        <div id="vacancies">
+            @Html.Partial("ShowVacancies", ViewBag.Vacancies as List<Vacancy>)
+        </div>
+    </div>
+</article>
+
+@*<article class="section-seven">
+        <div class="img">
+            <img class="vacancies" src="@Url.Content("~/images/vac.svg")" align="right" />
+        </div>
+        <div class="container ">
+            <div id="vacancies">
+                @Html.Partial("ShowVacancies", ViewBag.Vacancies as List<Vacancy>)
+            </div>
+        </div>
+    </article>*@
+
+<article class="section-six">
+    <img class="courses" src="@Url.Content("~/images/rutor.svg")" />
+    <div class="container">
+        <h1 class="c-h">Не достатньо знань? - Пройди курси</h1>
+        <div id="courses">
+            @Html.Partial("ShowCourses")
+        </div>
+    </div>
+</article>
+
+
+@*<article class="section-six">
+        <div class="img">
+            <img class="courses" src="@Url.Content("~/images/rutor.svg")" align="right" />
+        </div>
+        <div class="container ">
+            <div id="courses">
+                @Html.Partial("ShowCourses")
+            </div>
+        </div>
+    </article>*@
+<a name="form"></a>
+<article class="section-four">
+    <div class="blank-img">
+        <img class="blnk" src="@Url.Content("~/images/blank.svg")" />
+    </div>
+    @using (Ajax.BeginForm("ShowQuestion", new AjaxOptions { UpdateTargetId = "questions" }))
+    {
+        <div class="container">
+            @{
+                <div id="txttt">
+                    <h1>Зроби перший крок</h1>
+                    <h3>Пройди анкету</h3>
+                    <button id="startMagic" name="optionId" class="try" value="null">Спробуй</button>
+                </div>
+
+            }
+        </div>
+        <div id="questions">
+
+        </div>
+    }
+</article>
+<script src="@Url.Content("~/Scripts/questions.js")" defer></script>
+
+
+<article class="section-eight">
+    <div class="container">
+        <h2>Написати нам</h2>
+        <h3>gagarin@aprodos.kpi.ua</h3>
+        <h2>Технічна підтримка</h2>
+        <h3>+38(067)-111-22-33</h3>
+    </div>
+    <div class="img-flex">
+        <img class="chat" src="@Url.Content("~/images/chat.svg")" />
+    </div>
+</article>
+
+@*<article class="section-six">
+        <div class="img">
+            <img class="courses" src="@Url.Content("~/images/rutor.svg")" align="right" />
+        </div>
+        <div class="container ">
+            <h1>Курсы</h1>
+            <div class="row">
+                @foreach (var item in Model)
+                {
+                    <div class="wrap-container col-xs-12 col-sm-6 col-md-3 col-lg-3 ">
+                        <div class="container_item ">
+                            <div class="header_container">
+                                <h2>@item.Header</h2>
+                            </div>
+                            <div class="body_container">
+                                <dl>
+                                    <dt>Компания:</dt>
+                                    <dd class="company_container">@item.Company</dd>
+                                </dl>
+                                <dl>
+                                    <dd class="text_container">@item.Text</dd>
+                                </dl>
+                                <button class="btn btn-large btn-block btn-info" type="button">Подробней</button>
+                            </div>
+                        </div>
+                    </div>
+                }
+            </div>
+        </div>
+    </article>*@
+
